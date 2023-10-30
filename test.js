@@ -18,8 +18,54 @@ $(function () {
     )
   }
 
-  //
-  var videoId = 'eW1T1-MHCFw' //動画ID
+  ////////
+
+  $('.modal-open').click(function () {
+    modal.open($(this))
+  })
+
+  /*
+   *  モーダル設定
+   */
+  function Modal(el) {
+    this.option = {
+      modalOverlayClass: 'modal-overlay',
+      modalContentClass: 'modal-content',
+    }
+  }
+  Modal.prototype = {
+    open: function (el) {
+      modalObj = this
+      targetID = el.attr('href')
+      $target = $(targetID).clone()
+
+      //モーダル表示
+      $('body').append(
+        '<div class="' + this.option.modalOverlayClass + '"></div>'
+      )
+      $('.' + this.option.modalOverlayClass)
+        .append('<div class="' + this.option.modalContentClass + '"></div>')
+        .fadeIn(300)
+      $('.' + this.option.modalContentClass)
+        .append($target)
+        .fadeIn(300)
+      $target.fadeIn()
+
+      //閉じるイベント追加
+      $('.modal-overlay').click(function (e) {
+        modalObj.close()
+      })
+    },
+    close: function () {
+      $('.modal-overlay').remove()
+      $('.modal-content').remove()
+    },
+  }
+  var modal = new Modal()
+
+  /*
+   *  Youtube設定
+   */
   var videoWidth = '640' //動画横サイズ
   var videoHeight = '360' //動画縦サイズ
 
@@ -32,13 +78,15 @@ $(function () {
   // #player にiframeplayerを作成
   var player
   function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-      height: videoHeight,
-      width: videoWidth,
-      videoId: videoId,
-      playerVars: {
-        autoplay: 1, //自動再生する
-      },
+    $('.youtube').each(function (index) {
+      var videoId = $(this).data('video-id')
+      var playerId = $(this).attr('id')
+
+      player = new YT.Player(playerId, {
+        height: videoHeight,
+        width: videoWidth,
+        videoId: videoId,
+      })
     })
   }
 })
