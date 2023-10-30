@@ -29,6 +29,7 @@ function onYouTubePlayerAPIReady() {
   player = new YT.Player('player', {
     events: {
       onReady: onPlayerReady,
+      onStateChange: onPlayerStateChange,
     },
   })
 }
@@ -37,9 +38,20 @@ function onPlayerReady(event) {
   let playButton = document.getElementById('play')
   let el = document.getElementsByClassName('videoWrapper')
   playButton.addEventListener('click', function () {
-    alert(11)
     player.playVideo()
     playButton.style.display = 'none'
     el[0].classList.add('pv')
   })
+}
+
+function onPlayerStateChange(e) {
+  let playButton = document.getElementById('play')
+  console.log(e)
+  console.log(e.data)
+  if (e.data == 0 || e.data == 2) {
+    //0:停止 ,2:一時停止
+    playButton.style.display = 'block'
+  } else {
+    playButton.style.display = 'none'
+  }
 }
