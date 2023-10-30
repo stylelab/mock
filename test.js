@@ -17,30 +17,29 @@ $(function () {
   //       '*'
   //     )
   //   }
-
   ////////
-
-  let tag = document.createElement('script')
-  tag.src = 'https://www.youtube.com/iframe_api'
-  let firstScriptTag = document.getElementsByTagName('script')[0]
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-  let player
-  function onYouTubePlayerAPIReady() {
-    player = new YT.Player('player', {
-      events: {
-        onReady: onPlayerReady,
-      },
-    })
-  }
-
-  function onPlayerReady(event) {
-    let playButton = document.getElementById('play')
-    let el = document.getElementsByClassName('videoWrapper')
-    playButton.addEventListener('click', function () {
-      alert(11)
-      player.playVideo()
-      playButton.style.display = 'none'
-      el[0].classList.add('pv')
-    })
-  }
 })
+
+let tag = document.createElement('script')
+tag.src = 'https://www.youtube.com/iframe_api'
+let firstScriptTag = document.getElementsByTagName('script')[0]
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+let player
+function onYouTubePlayerAPIReady() {
+  player = new YT.Player('player', {
+    events: {
+      onReady: onPlayerReady,
+    },
+  })
+}
+
+function onPlayerReady(event) {
+  let playButton = document.getElementById('play')
+  let el = document.getElementsByClassName('videoWrapper')
+  playButton.addEventListener('click', function () {
+    alert(11)
+    player.playVideo()
+    playButton.style.display = 'none'
+    el[0].classList.add('pv')
+  })
+}
