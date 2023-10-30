@@ -5,7 +5,7 @@
   </head>
   <body>
     <div style="width: 519px; height: 923px">
-      <div class="movie-content-wrap">
+      <div class="movie-content-wrap jsYoutubePlayer">
         <iframe
           width="519"
           height="923"
@@ -14,10 +14,36 @@
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
-          id="player"
+          id="player_01"
+          class="youtube"
         ></iframe>
-        <img src="thm.png" class="movie-thumb" id="play" />
+        <img
+          src="thm.png"
+          class="movie-thumb"
+          id="play"
+          data-link-id="player_01"
+        />
       </div>
+      <div style="width: 519px; height: 923px">
+        <div class="movie-content-wrap jsYoutubePlayer">
+          <iframe
+            width="519"
+            height="923"
+            src="https://www.youtube.com/embed/IA5_fccyu6I?playsinline=0&enablejsapi=1"
+            title="あああ"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            id="player_02"
+            class="youtube"
+          ></iframe>
+          <img
+            src="thm.png"
+            class="movie-thumb"
+            id="play"
+            data-link-id="player_02"
+          />
+        </div>
     </div>
 
     <p>いいいい</p>
